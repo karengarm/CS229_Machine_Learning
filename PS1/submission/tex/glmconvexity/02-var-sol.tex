@@ -1,0 +1,24 @@
+\begin{answer}
+    The variance of an exponential family distribution is defined as:
+\begin{eqnarray*}
+\text{Var}(Y; \eta) &=&  \mathbb{E}[Y^2 ;\eta] - (\mathbb{E}[Y ;\eta])^2\\
+&=& \int p(y;\eta)y^2 dy - \left(\int p(y;\eta)y dy\right)^2
+\end{eqnarray*}
+
+The second derivative of $a(\eta)$ base on the results from (a) is:
+
+\begin{eqnarray*}
+\frac{\partial^2}{\partial \eta^2} a(\eta) &=& 
+\frac{\partial}{\partial \eta}( \mathbb{E}[Y ;\eta])\\
+&=& \frac{\partial}{\partial \eta} \left( \int b(y)\exp(\eta y - a(\eta))y dy\right)\\
+ &=& \int (b(y)y\exp(\eta y - a(\eta)))(y-\frac{\partial a(\eta)}{\partial \eta} ) dy\\
+ &=& \int b(y)\exp(\eta y - a(\eta))y^2-(b(y)\exp(\eta y - a(\eta))\frac{\partial a(\eta)}{\partial \eta} ) dy\\
+&=& \int b(y)\exp(\eta y - a(\eta))y^2dy - \left(\int b(y)\exp(\eta y - a(\eta)) y dy \right)^2\\
+&=&\mathbb{E}[Y^2 ;\eta] - (\mathbb{E}[Y ;\eta])^2\\
+&=&\text{Var}(Y; \eta)
+ 
+\end{eqnarray*}
+
+
+
+\end{answer}

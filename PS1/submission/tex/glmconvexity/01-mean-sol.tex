@@ -1,0 +1,31 @@
+\begin{answer}
+
+Solution 1 : 
+The exponential family have the form 
+\begin{equation*}
+    p(y ; \eta) = b(y)\exp(\eta y - a(\eta)).
+\end{equation*}
+
+because $p(y ; \eta)$ is a probability family distribution, we have: 
+
+\begin{equation*}
+\int p(y ; \eta) dy = \int b(y)\exp(\eta y - a(\eta)) dy = 1
+\end{equation*}
+
+which implies
+\begin{equation*}
+    a(\eta) = \log \int b(y)\exp(\eta y) dy
+\end{equation*}
+
+then the first derivative of $a(\eta)$ is 
+
+\begin{align*}
+    \frac{\partial}{\partial \eta} a(\eta)  &= \frac{\partial}{\partial \eta} \log \int b(y)\exp(\eta y)dy && \text{}\\
+     &=\frac{\int b(y)\exp(\eta y) y dy}{ \int b(y)\exp(\eta y) dy}  && \text{}\\
+     &=\frac{\int b(y)\exp(\eta y) ydy}{\exp(a(\eta))} \\ 
+     &= \int b(y)\exp(\eta y - a(\eta))y dy \\
+     &= \int  p(y ; \eta)y dy \\
+     &= \mathbb{E}[Y ;\eta] 
+\end{align*}
+
+\end{answer}

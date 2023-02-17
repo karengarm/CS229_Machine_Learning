@@ -1,0 +1,27 @@
+\begin{answer}
+
+The negative log-likelihood (NLL) of the distriburtion, as a function of $\theta$ is:
+
+\begin{eqnarray*}
+\ell(\theta) &=& - \sum_{i=1}^{n} \log p(y^{(i)}| x^{(i)}; \theta)\\
+&=& - \sum_{i=1}^{n} \log \left( b(y^{(i)}) \exp(\theta^{T}x^{(i)} y^{(i)} - a(\theta^{T}x^{(i)})))\right\\
+&=& - \sum_{i=1}^{n} \log b(y^{(i)}) + \theta^{T}x^{(i)} y^{(i)} - a(\theta^{T}x^{(i)})\\
+&=& \sum_{i=1}^{n} a(\theta^{T}x^{(i)})  - \theta^{T}x^{(i)} y^{(i)} -\log b(y^{(i)}) 
+\end{eqnarray*}
+
+Gradient of the loss is:
+
+\begin{eqnarray*}
+\triangledown_{\theta} \ell(\theta) &=&  \sum_{i=1}^{n} x^{(i)}\frac{\partial  a(\theta^{T}x^{(i)})}{\partial \theta} - x^{(i)}y^{(i)}
+\end{eqnarray*}
+
+then the Hessian is defined:
+
+\begin{eqnarray*}
+\triangledown_{\theta}^2 \ell(\theta)  &=&  \sum_{i=1}^{n} x^{(i)}x^{(i)}^T\frac{\partial^2  a(\theta^{T}x^{(i)})}{\partial^2 \theta}\\
+&=& x^{(i)}x^{(i)}^T\text{Var}(Y; \eta)
+\end{eqnarray*}
+
+$x^{(i)}x^{(i)}^T$ is Positive Semi-Definite, because $(z^Tx)(x^Tz) = (z^Tx)^2 \geq 0$ and the $\text{Var}(Y; \eta)$ of any probability distribution is non-negative. Therefore the Hessian $\triangledown_{\theta}^2 \ell(\theta) $ is Positive Semi-Definite and hence convex.
+
+\end{answer}

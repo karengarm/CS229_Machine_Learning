@@ -1,0 +1,21 @@
+\begin{answer}
+
+From (d) we now that  
+
+\begin{eqnarray*}
+ h(x^{(i)}) &=& p(y^{(i)} = 1\mid x^{(i)}) \\
+ &=&\alpha p(t^{(i)} = 1\mid x^{(i)})\\
+\end{eqnarray*}
+ 
+Assuming $g(x^{(i)}) =p(t^{(i)} = 1\mid x^{(i)})$, we have that
+ 
+\begin{eqnarray*}
+\mathbb{E}[h(x^{(i)})\mid y^{(i)}=1]  &=&
+\mathbb{E}[\alpha g(x^{(i)})\mid y^{(i)}=1 ] \\
+&=& \alpha \mathbb{E}[g(x^{(i)})\mid y^{(i)}=1 ] \\
+&=& \alpha \mathbb{E}[p(t^{(i)} = 1\mid x^{(i)})\mid y^{(i)}=1 ] 
+\end{eqnarray*}
+
+From (c) we now that $p(t^{(i)}=1\mid y^{(i)} = 1, x^{(i)}) = 1$ then $\mathbb{E}[p(t^{(i)} = 1\mid x^{(i)})\mid y^{(i)}=1 ] = 1$
+Therefore $\mathbb{E}[h(x^{(i)})\mid y^{(i)}=1] = \alpha$
+\end{answer}

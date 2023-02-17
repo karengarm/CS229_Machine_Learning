@@ -1,0 +1,43 @@
+\begin{answer}
+Note that $h_{\theta}(x) = 1 / (1 + e^{-\theta^T x})$ and $\frac{\partial h_{\theta}(x^{(i)})}{\partial \theta} = h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)}))x^{(i)}$ then
+
+\begin{eqnarray*}
+\frac{\partial \log(h_{\theta}(x^{(i)}))}{\partial \theta_{j}} &=& \frac{1}{(h_{\theta}(x^{(i)}))}h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)}))x^{(i)}_{j} \\
+&=& (1-h_{\theta}(x^{(i)}))x^{(i)}_{j} 
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\frac{\partial \log(1-h_{\theta}(x^{(i)}))}{\partial \theta_{j}} &=& \frac{1}{(1-h_{\theta}(x^{(i)}))}(-h_{\theta}(x^{(i)}))(1-h_{\theta}(x^{(i)}))x^{(i)}_{j} \\
+&=& -h_{\theta}(x^{(i)})x^{(i)}_{j} 
+\end{eqnarray*}
+
+Substituting into $\frac{\partial J(\theta)}{\partial \theta_{j}}$:
+
+ \begin{eqnarray*}
+\frac{\partial J(\theta)}{\partial \theta_{j}} 
+&=& -\frac{1}{\nexp} \sum_{i=1}^\nexp \left(y^{(i)} (1-h_{\theta}(x^{(i)}))  +  (1 - y^{(i)})(-h_{\theta}(x^{(i)})) \right)x^{(i)}_{j} \\
+&=& -\frac{1}{\nexp} \sum_{i=1}^\nexp \left( y^{(i)} - h_{\theta}(x^{(i)}) \right)x^{(i)}_{j} 
+  \end{eqnarray*}
+  
+The Hessian can be defined:
+
+\begin{eqnarray*}
+\frac{\partial J(\theta)}{\partial \theta_{k} \theta_{j}} 
+&=& \frac{1}{\nexp} \sum_{i=1}^\nexp \left( h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)})) x^{(i)}_{k} x^{(i)}_{j} \right)
+\end{eqnarray*}
+ 
+ 
+\begin{eqnarray*}
+H &=& \frac{1}{\nexp} \sum_{i=1}^\nexp \left( h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)})) x^{(i)} x^{(i)T} \right)
+\end{eqnarray*}
+ 
+Lets prove that the Hessian is positive semi-definite:
+
+\begin{eqnarray*}
+z^{(T)}Hz&=& z^{(T)}\frac{1}{\nexp} \sum_{i=1}^\nexp \left( h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)})) x^{(i)} x^{(i)T} \right)z \\
+&=& \frac{1}{\nexp} \sum_{i=1}^\nexp \left( h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)})) (z^{(T)}x^{(i)}) (x^{(i)T} z)\right) \\
+&=&  \frac{1}{\nexp} \sum_{i=1}^\nexp \left( h_{\theta}(x^{(i)})(1-h_{\theta}(x^{(i)})) (z^{(T)}x^{(i)})^{2} \right)
+\end{eqnarray*}
+  
+$(z^{(T)}x^{(i)})^{2}$ is always bigger equal than 0 and $h_{\theta}(x^{(i)})$ is between 0 and 1 then $(1-h_{\theta}(x^{(i)}))\geq0$.  Therefore  $z^{(T)}Hz\geq0$, H is semi-definite positive.
+\end{answer}

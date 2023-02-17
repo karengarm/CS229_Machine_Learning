@@ -1,0 +1,23 @@
+\begin{answer}
+
+The objective function $J(\theta)$ of the linear regression on the new dataset $\{(\hat{x}^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$ is:
+
+\begin{equation*}
+J(\theta) &=& \frac{1}{2}\sum_{i = 1}^{\nexp} (h_{\theta}(\hat{x}^{(i)} )- y^{(i)})^2
+\end{equation*}
+
+The partial derivative pf the objective function is:
+
+\begin{eqnarray*}
+\frac{\partial}{\partial \theta_{j}}J(\theta) &=& \frac{\partial}{\partial \theta_{j}} \frac{1}{2}\sum_{i = 1}^{\nexp} (h_{\theta}(\hat{x}^{(i)} )- y^{(i)})^2 \\
+&=& \sum_{i = 1}^{\nexp}  (h_{\theta}(\hat{x}^{(i)} )- y^{(i)})\hat{x}^{(j)}
+\end{eqnarray*}
+
+The update rule of the batch gradient descent algorithm for linear regression on the dataset $\{(\hat{x}^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$ and $\alpha$ as learning rate is:
+ 
+\begin{eqnarray*}
+\theta_j &:=& \theta_j -\alpha \frac{\partial}{\partial \theta_{j}}J(\theta)\\
+\theta_j &:=& \theta_j -\alpha \sum_{i = 1}^{\nexp}  (h_{\theta}(\hat{x}^{(i)} )- y^{(i)})\hat{x}^{(j)}
+\end{eqnarray*}
+ 
+\end{answer}

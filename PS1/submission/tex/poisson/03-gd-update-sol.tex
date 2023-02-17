@@ -1,0 +1,30 @@
+\begin{answer}
+
+To derive a GLM for this problem, we have three assumptions. From Assumption 1, follows  that $y|x;\theta \sim ExponentialFamily(\eta )$.  From Assumption 3, we have that the natural parameter $\theta$ and the inputs $x$ are related linearly:  $\eta =\theta^{T}x$.
+
+Then using results in part (a), we can write the log-likehood as:
+
+\begin{eqnarray*}
+  \ell(\theta) &=& \sum_{i=1}^\nexp \log p(y^{(i)} | x^{(i)}; \theta)\\
+  &=& \sum_{i=1}^\nexp \log\left( \frac{1}{y^{(i)}!}\exp( (\theta^{T}x^{(i)})^{T} y^{(i)}-e^{\theta^{T}x^{(i)}} )\right)\\
+  &=&   \log\left( \frac{1}{y^{(i)}!}\right) + \sum_{i=1}^\nexp \log\left(\exp( (\theta^{T} x^{(i)})^{T} y^{(i)}-e^{\theta^{T}x^{(i)}} ) \right)\\
+  &=&   \log\left( \frac{1}{y^{(i)}!}\right) + \sum_{i=1}^\nexp \left(  (\theta^{T}x^{(i)})^{T} y^{(i)}-e^{\theta^{T}x^{(i)}} \right)
+\end{eqnarray*}
+
+then to derive the stochastic gradient ascent rule,
+
+\begin{eqnarray*}
+  \frac{ \partial \ell(\theta)}{\partial \theta_{k}} &=&\sum_{i=1}^\nexp \frac{ \partial(  (\theta^{T} x^{(i)})^{T} y^{(i)}-e^{\theta^{T}x^{(i)}})}{\partial \theta_{k}}\\
+  &=&\sum_{i=1}^\nexp \frac{ \partial(  (\sum_{j=1}\theta_{j}^{T} x_{j}^{(i)})^{T} y-e^{\sum_{j=1}\theta_{j}^{T} x_{j}^{(i)}})}{\partial \theta_{k}}\\
+  &=&\sum_{i=1}^\nexp x_{k}^{(i)}y^{(i)}-x_{k}^{(i)}e^{\theta^{T}x^{(i)}}\\
+  &=& \sum_{i=1}^\nexp(y^{(i)}-e^{\theta^{T}x^{(i)}})x_{k}^{(i)}
+\end{eqnarray*}
+
+Thus the stochastic gradient ascent rule for every $\theta_{k}$ is :
+
+\begin{eqnarray*}
+ \theta_{k} =\theta_{k} + \alpha \sum_{i=1}^\nexp (y^{(i)}-e^{\theta^{T}x^{(i)}})x_{k}^{(i)}
+\end{eqnarray*}
+
+
+\end{answer}

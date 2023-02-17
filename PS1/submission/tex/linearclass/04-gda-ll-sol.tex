@@ -1,0 +1,71 @@
+\begin{answer}
+
+
+ \begin{eqnarray*}
+\ell(\phi, \mu_{0}, \mu_1, \Sigma)
+&=& \log \prod_{i=1}^\nexp p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) p(y^{(i)};
+\phi)\\
+&=& \sum_{i=1}^\nexp \log p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) + \sum_{i=1}^\nexp \log p(y^{(i)};
+\phi)\\ 
+&\approx& \sum_{i=1}^\nexp ( \frac{1}{2}\log(\frac{1}{|\Sigma|}) -\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T \Sigma^{-1} (x^{(i)}-\mu_{y^{(i)}}) + y^{(i)} \log \phi + (1- y^{(i)})\log (1-\phi)
+  \end{eqnarray*}
+  
+The derivative of   $\frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial \phi}$ is given:
+
+ \begin{eqnarray*}
+ \frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial \phi} &=&  \sum_{i=1}^\nexp \frac{y^{(i)}}{\phi} - \frac{1- y^{(i)}}{1-\phi} \\
+&=&  \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 1\}}{\phi} - \frac{n -  \sum_{i=1}^\nexp 1\{y^{(i)} = 1\}}{1-\phi} 
+ \end{eqnarray*}
+ 
+ Setting the last equation to 0 and solving for $\phi$ we obtain:
+  \begin{eqnarray*}
+  \phi &=& \frac{1}{\nexp} \sum_{i=1}^\nexp 1\{y^{(i)} = 1\}
+  \end{eqnarray*}
+  
+  
+The derivative of   $\frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial \mu_{0}}$ is given: 
+
+\begin{eqnarray*}
+ \frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial \mu_{0}} &=&
+ -\frac{1}{2}  \sum_{i=1}^\nexp \frac{\partial}{\partial \mu_{0}} \left( (x^{(i)}-\mu_{0})^T \Sigma^{-1} (x^{(i)}-\mu_{0}}) \right) \\
+  &=& -\frac{1}{2}  \sum_{i=1}^\nexp \left(  2\Sigma^{-1}\mu_{0} - 2\Sigma^{-1}x^{(i)}  \right)
+ \end{eqnarray*}
+ 
+ Setting the last equation to 0 and solving for $\mu_{0}$ we obtain:
+ 
+\begin{eqnarray*}
+  \mu_{0} &=& \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 0\} x^{(i)}}{\sum_{i=1}^\nexp 1\{y^{(i)} = 0\}} 
+\end{eqnarray*}
+ 
+ Similar we can derive that the  $\frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial \mu_1}$ is given by:
+ 
+ \begin{eqnarray*}
+  \mu_{1} &=& \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 1\} x^{(i)}}{\sum_{i=1}^\nexp 1\{y^{(i)} =1\}} 
+\end{eqnarray*}
+
+Defining $Sig = \Sigma^{-1}$ and $A_{i} = x^{(i)}-\mu_{y^{(i)}}$ then the derivative of   $\frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial Sig}$ is given: 
+
+ \begin{eqnarray*}
+ \frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial Sig} &=&
+  \sum_{i=1}^\nexp \frac{\partial}{\partial  Sig} \left( \frac{1}{2} \log(|Sig|) - \frac{1}{2} (A_{i})^T Sig A_{i}) \right) \\
+ &=& \sum_{i=1}^\nexp \left( \frac{1}{2|Sig|} \frac{\partial |Sig|}{\partial Sig} -\frac{1}{2} A_{i} A_{i}^T    \right)
+ \end{eqnarray*}
+ On the other side
+ \begin{eqnarray*}
+ \frac{\partial |Sig|}{\partial Sig} = |Sig|(Sig^{-1})^T
+ \end{eqnarray*}
+ 
+ Using the above equations, we get:
+ 
+ \begin{eqnarray*}
+ \frac{\partial \ell(\phi, \mu_{0}, \mu_1, \Sigma)}{\partial Sig} &=& \sum_{i=1}^\nexp \left( \frac{1}{2} (Sig^{-1}) -\frac{1}{2} A_{i} A_{i}^T  \right)\\
+ &=& \frac{1}{2} \sum_{i=1}^\nexp \left(\Sigma - A_{i} A_{i}^T
+ \right)
+ \end{eqnarray*}
+ 
+ 
+ Setting to zero we obtain the maximum likelihood estimate for $\Sigma$:
+ \begin{eqnarray*}
+ \Sigma &=& \frac{1}{\nexp} \sum_{i=1}^\nexp (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} -\mu_{y^{(i)}})^T
+  \end{eqnarray*}
+ \end{answer}
